@@ -396,7 +396,7 @@ class ELmonocleDB:
             # time slice is large: Must be less than or equal to: [10000] but was [10001]. ()This limit can be
             # set by changing the [search.max_buckets] cluster level)
             # This is an attempt to mitigate the issue
-            cluster_settings = {"transient": {"search.max_buckets": 100000}}
+            cluster_settings = {"persistent": {"action.auto_create_index": True}}
             self.es.cluster.put_settings(body=cluster_settings)
             # Check current index properties and add new filed index properties
             current_index_properties = (
